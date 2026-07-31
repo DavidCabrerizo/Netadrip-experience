@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netadrip Experience | Inscripción visitantes</title>
+  <meta name="description" content="Netadrip Experience: charlas técnicas de alto nivel con Athena, Netadrip y Grand Cru, actividad experiencial, BBQ y visita opcional a CSC." />
+  <style>
+    :root{
+      --green:#008c67;
+      --green-dark:#003f32;
+      --green-deep:#001f1a;
+      --mint:#d9fff2;
+      --gold:#ffb71b;
+      --white:#ffffff;
+      --off:#f4f7f5;
+      --text:#10231f;
+      --muted:#6b817b;
+      --border:rgba(0,63,50,.13);
+      --shadow:0 24px 70px rgba(0,31,26,.16);
+      --radius:28px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,Arial,Helvetica,sans-serif;background:var(--off);color:var(--text);line-height:1.55;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(0,31,26,.91);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.12)}
+    .topbar .inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;color:white}
+    .brand img{width:250px;max-width:46vw;height:auto;display:block}
+    .brand-tag{font-size:13px;color:var(--gold);font-weight:950;text-transform:uppercase;letter-spacing:.18em;white-space:nowrap}
+    nav{display:flex;gap:20px;color:rgba(255,255,255,.82);font-size:14px;font-weight:850}
+    nav a:hover{color:var(--gold)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;background:var(--gold);color:var(--green-deep);font-weight:950;box-shadow:0 16px 38px rgba(255,183,27,.28);border:0;cursor:pointer;transition:.2s ease;font-size:15px}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 22px 48px rgba(255,183,27,.38)}
+    .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.28);box-shadow:none}
+    .hero{position:relative;min-height:calc(100vh - 82px);display:flex;align-items:center;color:white;background:radial-gradient(circle at 85% 18%,rgba(255,183,27,.25),transparent 32%),linear-gradient(135deg,var(--green-deep),var(--green-dark) 44%,var(--green));overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,31,26,.96),rgba(0,63,50,.65)),url('assets/netadrip-logo.png');background-repeat:no-repeat;background-position:right 5% center;background-size:520px auto;opacity:.2}
+    .hero .container{position:relative;z-index:2;padding:92px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);padding:9px 15px;border-radius:999px;color:var(--mint);font-size:13px;font-weight:950;text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px}
+    h1{font-size:clamp(46px,7.2vw,98px);line-height:.92;letter-spacing:-.065em;max-width:950px;text-transform:uppercase;font-weight:950}
+    h1 span{color:var(--gold);display:block}
+    .lead{font-size:clamp(18px,2.2vw,25px);max-width:890px;margin:28px 0;color:rgba(255,255,255,.86)}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+    .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:54px;max-width:1050px}
+    .quick-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;backdrop-filter:blur(12px)}
+    .quick-card b{display:block;color:var(--gold);font-size:30px;line-height:1;font-weight:950}
+    .quick-card span{font-size:13px;color:rgba(255,255,255,.76);font-weight:850}
+    section{padding:86px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(34px,4vw,58px);line-height:1;letter-spacing:-.045em;text-transform:uppercase;color:var(--green-dark)}
+    .section-head p{max-width:600px;color:var(--muted);font-size:18px}
+    .grid{display:grid;gap:22px}
+    .grid.two{grid-template-columns:1fr 1fr}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    .card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:0 12px 34px rgba(0,31,26,.06)}
+    .card.dark{background:linear-gradient(145deg,var(--green-dark),var(--green-deep));color:white}
+    .card.gold{background:linear-gradient(145deg,var(--gold),#ffd56b);color:var(--green-deep)}
+    .card h3{font-size:24px;line-height:1.12;margin-bottom:14px;color:var(--green-dark)}
+    .card.dark h3{color:white}
+    .card p{color:var(--muted)}
+    .card.dark p{color:rgba(255,255,255,.78)}
+    .pill{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(0,140,103,.1);color:var(--green);font-weight:950;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+    .dark .pill{background:rgba(255,255,255,.12);color:var(--gold)}
+    .speaker-card{position:relative;overflow:hidden}
+    .speaker-card:before{content:"";position:absolute;top:0;left:0;right:0;height:7px;background:linear-gradient(90deg,var(--green),var(--gold))}
+    .speaker-name{font-size:36px;line-height:1;font-weight:950;color:var(--green-dark);letter-spacing:-.04em;margin-bottom:14px}
+    .topics{list-style:none;display:grid;gap:10px;margin-top:18px}
+    .topics li{position:relative;padding-left:28px;color:var(--muted);font-weight:650}
+    .topics li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:950}
+    .price{display:inline-flex;align-items:baseline;gap:6px;margin-top:16px;font-size:34px;line-height:1;font-weight:950;color:var(--green)}
+    .price small{font-size:14px;color:var(--muted);font-weight:850}
+    .note{font-size:13px;color:var(--muted);margin-top:10px}
+    .timeline{display:grid;gap:16px}
+    .timeline-item{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:22px}
+    .time{font-weight:950;color:var(--green);text-transform:uppercase}
+    .timeline-item h3{font-size:22px;margin-bottom:6px;color:var(--green-dark)}
+    .timeline-item p{color:var(--muted)}
+    .form-section{background:linear-gradient(135deg,var(--green-deep),var(--green-dark));color:white}
+    .form-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+    .form-copy h2{font-size:clamp(34px,4.8vw,64px);line-height:1;letter-spacing:-.05em;text-transform:uppercase}
+    .form-copy p{margin-top:18px;color:rgba(255,255,255,.78);font-size:18px}
+    .form-panel{background:white;color:var(--text);border-radius:32px;padding:30px;box-shadow:var(--shadow)}
+    .field{display:grid;gap:8px;margin-bottom:18px}
+    label{font-weight:900;color:var(--green-dark);font-size:14px}
+    input,select,textarea{width:100%;border:1px solid rgba(0,63,50,.18);border-radius:16px;padding:14px 15px;font:inherit;color:var(--text);background:#fbfdfc;outline:none}
+    input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(0,140,103,.1)}
+    textarea{min-height:96px;resize:vertical}
+    .checks{display:grid;gap:10px;margin:14px 0 22px}
+    .check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid rgba(0,63,50,.12);border-radius:16px;background:#fbfdfc}
+    .check input{width:auto;margin-top:4px}
+    .check span{font-size:14px;color:var(--muted)}
+    .submit-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .form-note{font-size:12px;color:var(--muted);margin-top:14px}
+    .whatsapp-btn{background:#25D366;color:#062b16;box-shadow:0 16px 38px rgba(37,211,102,.2)}
+    footer{background:var(--green-deep);color:rgba(255,255,255,.72);padding:30px 0}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-inner strong{color:white}
+    @media(max-width:900px){
+      nav{display:none}
+      .topbar .inner{height:76px}
+      .brand img{width:210px;max-width:60vw}
+      .brand-tag{font-size:11px}
+      .hero{min-height:auto}
+      .hero:before{background-size:300px auto;background-position:right -80px center}
+      .quick,.grid.two,.grid.three,.form-wrap{grid-template-columns:1fr}
+      .section-head{display:block}
+      .section-head p{margin-top:16px}
+      .timeline-item{grid-template-columns:1fr}
+      section{padding:64px 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container inner">
+      <a class="brand" href="#inicio" aria-label="Netadrip Experience">
+        <img src="assets/netadrip-logo.png" alt="Netadrip" />
+        <span class="brand-tag">Experience</span>
+      </a>
+      <nav>
+        <a href="#charlas">Charlas</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#inscripcion">Inscripción</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container">
+      <div class="eyebrow">Fecha a confirmar · mediados/finales de septiembre · A Coruña</div>
+      <h1>Una jornada técnica <span>para cultivar a otro nivel</span></h1>
+      <p class="lead">Netadrip Experience es un encuentro para visitantes profesionales, tiendas, cultivadores y amantes del cultivo técnico que quieren aprender de marcas de referencia, vivir una experiencia diferente y conectar con una comunidad real.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#inscripcion">Quiero apuntarme</a>
+        <a class="btn secondary" href="#charlas">Ver charlas</a>
+      </div>
+      <div class="quick">
+        <div class="quick-card"><b>Athena</b><span>técnicas reales de nutrición usadas en salas profesionales</span></div>
+        <div class="quick-card"><b>Netadrip</b><span>riego de precisión, drenaje y crop steering aplicado al cultivo real</span></div>
+        <div class="quick-card"><b>Grand Cru</b><span>pheno hunting, selección genética y criterios usados en breeding profesional</span></div>
+        <div class="quick-card"><b>Más profesionales</b><span>nuevas marcas y expertos técnicos todavía por confirmar</span></div>
+      </div>
+    </div>
+  </main>
+
+  <section id="concepto">
+    <div class="container">
+      <div class="section-head">
+        <h2>No es una feria. Es una experiencia técnica.</h2>
+        <p>La idea es reunir a gente que quiere entender el cultivo desde dentro: nutrición, riego, manejo profesional, selección genética y comunidad.</p>
+      </div>
+      <div class="grid two">
+        <article class="card dark">
+          <span class="pill">Para asistentes</span>
+          <h3>Aprende directamente de marcas y profesionales</h3>
+          <p>Un formato cercano, sin distancia entre ponentes y asistentes, pensado para preguntar, compartir casos reales y llevarte ideas aplicables a tu forma de cultivar.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Plazas limitadas</span>
+          <h3>Inscripción previa para organizar el grupo</h3>
+          <p>Queremos medir el interés antes de cerrar todos los detalles finales. Por eso abrimos esta preinscripción para conocer quién quiere venir y qué actividades le interesan.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="charlas" style="background:white">
+    <div class="container">
+      <div class="section-head">
+        <h2>Charlas de alto nivel técnico</h2>
+        <p>El sábado será el eje del evento: una jornada para aprender de la mano de marcas con experiencia real en cultivo profesional. Además de Athena, Netadrip y Grand Cru, podremos contar con alguna empresa más todavía pendiente de confirmar.</p>
+      </div>
+      <div class="grid three">
+        <article class="card speaker-card">
+          <span class="pill">Nutrición profesional</span>
+          <div class="speaker-name">Athena</div>
+          <p>Athena explicará cómo trabajar de manera profesional con sus productos, entendiendo la nutrición como una herramienta de precisión dentro del cultivo.</p>
+          <ul class="topics">
+            <li>Manejo profesional de sus líneas de producto.</li>
+            <li>Lectura del cultivo y ajuste de estrategia.</li>
+            <li>Aplicación práctica para salas técnicas.</li>
+          </ul>
+        </article>
+
+        <article class="card speaker-card">
+          <span class="pill">Riego de precisión</span>
+          <div class="speaker-name">Netadrip</div>
+          <p>Netadrip abordará cómo llevar un cultivo a un nivel más profesional mediante riego automatizado, control de drenaje y técnicas como crop steering.</p>
+          <ul class="topics">
+            <li>Riego como decisión estratégica.</li>
+            <li>Crop steering aplicado a salas reales.</li>
+            <li>Precisión, frecuencia, drenaje y lectura de planta.</li>
+          </ul>
+        </article>
+
+        <article class="card speaker-card">
+          <span class="pill">Genética y selección</span>
+          <div class="speaker-name">Grand Cru</div>
+          <p>Grand Cru hablará sobre genéticas, procesos de pheno hunting y técnicas utilizadas en su trabajo de breeding para seleccionar plantas con criterio.</p>
+          <ul class="topics">
+            <li>Cómo plantear un buen pheno hunting.</li>
+            <li>Qué buscar durante la selección genética.</li>
+            <li>Visión práctica del trabajo de breeding.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="actividades">
+    <div class="container">
+      <div class="section-head">
+        <h2>Mucho más que sentarse a escuchar</h2>
+        <p>Además de las charlas, queremos que Netadrip Experience sea un punto de encuentro para crear relaciones, compartir experiencia y vivir algo diferente.</p>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <span class="pill">Sábado mañana</span>
+          <h3>Charlas técnicas</h3>
+          <p>Acceso al bloque principal de charlas con Athena, Netadrip y Grand Cru.</p>
+          <div class="price">10€ <small>reserva</small></div>
+        </article>
+        <article class="card">
+          <span class="pill">Sábado tarde</span>
+          <h3>Barco o motos de agua</h3>
+          <p>Una experiencia fuera del formato clásico de evento: estamos valorando un paseo en barco por las Rías o una actividad en motos de agua para compartir un momento más cercano, desconectar después de las charlas y seguir haciendo comunidad en un entorno único.</p>
+          <div class="price">120€ <small>aprox.</small></div>
+        </article>
+        <article class="card">
+          <span class="pill">Sábado noche</span>
+          <h3>Cena barbacoa</h3>
+          <p>Una BBQ para cerrar el sábado en un ambiente cercano, con conversación, comunidad y networking real.</p>
+          <div class="price">35€ <small>persona</small></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="agenda" style="background:white">
+    <div class="container">
+      <div class="section-head">
+        <h2>Agenda orientativa</h2>
+        <p>Fecha prevista para mediados/finales de septiembre. La fecha definitiva se comunicará a los inscritos cuando quede cerrada.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">Viernes</div>
+          <div>
+            <h3>Llegada y bienvenida</h3>
+            <p>Recepción de asistentes y primer contacto informal para empezar a generar ambiente entre tiendas, cultivadores, marcas y equipo Netadrip.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">Sábado mañana</div>
+          <div>
+            <h3>Charlas con Athena, Netadrip y Grand Cru</h3>
+            <p>Bloque principal del evento: nutrición profesional, riego de precisión, crop steering, genética, pheno hunting y breeding. También podremos sumar alguna empresa más todavía pendiente de confirmar.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">Sábado tarde</div>
+          <div>
+            <h3>Actividad experiencial</h3>
+            <p>Actividad a definir entre paseo en barco por las Rías o motos de agua. Precio aproximado: 120€ por persona.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">Sábado noche</div>
+          <div>
+            <h3>Cena barbacoa</h3>
+            <p>BBQ de comunidad para seguir compartiendo en un ambiente más relajado. Precio previsto: 35€ por persona.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">Domingo</div>
+          <div>
+            <h3>Visita opcional a CSC de la zona</h3>
+            <p>Para quien quiera quedarse, visitaremos un CSC de la zona para cerrar el fin de semana en un ambiente más distendido.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscripcion" class="form-section">
+    <div class="container form-wrap">
+      <div class="form-copy">
+        <span class="pill">Preinscripción</span>
+        <h2>Reserva tu interés antes de cerrar plazas</h2>
+        <p>Déjanos tus datos para saber si quieres asistir, si vienes de una empresa o growshop y en qué actividades participarías.</p>
+        <p>Cuando confirmemos fecha definitiva, actividad final y detalles logísticos, contactaremos primero con las personas preinscritas.</p>
+      </div>
+
+      <form class="form-panel" action="mailto:social.netadrip@gmail.com" method="post" enctype="text/plain">
+        <div class="field">
+          <label for="nombre">Nombre completo *</label>
+          <input id="nombre" name="Nombre completo" type="text" placeholder="Nombre y apellidos" required />
+        </div>
+
+        <div class="field">
+          <label for="empresa">Empresa o growshop</label>
+          <input id="empresa" name="Empresa o growshop" type="text" placeholder="Nombre de empresa, growshop o marca" />
+        </div>
+
+        <div class="field">
+          <label for="perfil">Perfil</label>
+          <select id="perfil" name="Perfil">
+            <option value="">Selecciona una opción</option>
+            <option>GrowShop</option>
+            <option>Marca del sector</option>
+            <option>Cultivador</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="checks">
+          <label>¿En qué te gustaría participar?</label>
+          <label class="check">
+            <input type="checkbox" name="Charlas sábado" value="Sí" />
+            <span>Charlas técnicas del sábado · 10€ reserva de plaza</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="Actividad sábado" value="Sí" />
+            <span>Actividad experiencial: paseo en barco o motos de agua · 120€ aprox.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="BBQ sábado" value="Sí" />
+            <span>Cena barbacoa del sábado · 35€ por persona</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="CSC domingo" value="Sí" />
+            <span>Visita opcional a CSC de la zona el domingo</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input id="telefono" name="Teléfono / WhatsApp" type="tel" placeholder="+34 ..." />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="Email" type="email" placeholder="tu@email.com" />
+        </div>
+
+        <div class="field">
+          <label for="comentarios">Comentarios</label>
+          <textarea id="comentarios" name="Comentarios" placeholder="Cuéntanos si vienes con alguien, qué parte te interesa más o cualquier detalle importante."></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button class="btn" type="submit">Enviar preinscripción</button>
+          <a class="btn whatsapp-btn" href="https://wa.me/34602686285?text=Hola%20David%2C%20quiero%20apuntarme%20a%20Netadrip%20Experience" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+
+        <p class="form-note">La preinscripción no implica pago automático. Sirve para reservar interés y organizar el grupo antes de confirmar fecha, plazas y detalles finales.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>Netadrip Experience</strong> · A Coruña · Fecha a confirmar</div>
+      <div>social.netadrip@gmail.com · @netadrip</div>
+    </div>
+  </footer>
+</body>
+</html>
