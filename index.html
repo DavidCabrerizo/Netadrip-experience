@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Growers Sea Session #1 | Netadrip</title>
+  <style>
+    :root{
+      --deep:#12363b;
+      --dark:#071f22;
+      --green:#048b67;
+      --gold:#c7a463;
+      --off:#f4f7f5;
+      --text:#173135;
+      --muted:#5d7478;
+      --line:rgba(18,54,59,.14);
+      --shadow:0 22px 60px rgba(7,31,34,.14);
+      --radius:28px;
+      --red:#cf2424;
+      --wa:#25D366;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial, Helvetica, sans-serif;background:var(--off);color:var(--text);line-height:1.55}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+    .container{width:min(1120px,92vw);margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:99;background:rgba(7,31,34,.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.12)}
+    .topbar .inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand img{height:42px;width:auto}
+    nav{display:flex;gap:24px;align-items:center}
+    nav a{color:rgba(255,255,255,.9);font-weight:800;font-size:15px}
+    nav a:hover{color:var(--gold)}
+    .menu-toggle{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);border-radius:14px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+    .menu-toggle span{width:22px;height:2px;background:#fff;border-radius:999px;display:block;transition:.25s}
+    .menu-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .menu-toggle.active span:nth-child(2){opacity:0}
+    .menu-toggle.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+    .hero{
+      min-height:760px;
+      background:
+        linear-gradient(90deg,rgba(7,31,34,.82),rgba(7,31,34,.54),rgba(7,31,34,.18)),
+        url('assets/hero-fondo.jpeg') center/cover no-repeat;
+      color:white;
+      display:flex;
+      align-items:center;
+    }
+    .hero .wrap{padding:110px 0 70px;max-width:980px}
+    .kicker{color:var(--gold);font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:14px;margin-bottom:18px}
+    h1{font-size:clamp(54px,8vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:950;text-transform:uppercase;margin-bottom:26px}
+    h1 span{color:var(--gold)}
+    .lead{font-size:clamp(18px,2.2vw,24px);max-width:880px;color:rgba(255,255,255,.9);margin-bottom:30px}
+    .hero-logo-strip{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:30px 0 26px}
+    .hero-logo-card{height:76px;min-width:170px;padding:14px 20px;border-radius:20px;background:rgba(255,255,255,.94);box-shadow:0 18px 42px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center}
+    .hero-logo-card img{max-height:52px;max-width:190px;object-fit:contain}
+    .hero-logo-card.combo{min-width:250px}
+    .hero-logo-card.combo img{max-width:240px;max-height:50px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 24px;border-radius:999px;font-weight:900;border:1px solid transparent;cursor:pointer;transition:.2s;font-size:15px}
+    .btn.reserve,.btn.primary{background:var(--red);color:white;box-shadow:0 12px 28px rgba(207,36,36,.28)}
+    .btn.reserve:hover,.btn.primary:hover{background:#b61e1e}
+    .btn.secondary{color:white;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.08)}
+    .btn.whatsapp{background:var(--wa);color:white;box-shadow:0 12px 28px rgba(37,211,102,.24)}
+    .hero-actions,.submit-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .price-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:760px;margin-top:28px}
+    .mini{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:18px;backdrop-filter:blur(8px)}
+    .mini b{display:block;color:var(--gold);font-size:30px;line-height:1;font-weight:950}
+    .mini span{display:block;color:rgba(255,255,255,.8);font-size:13px;font-weight:800;margin-top:6px}
+    .hero-note{margin-top:16px;color:rgba(255,255,255,.86);font-weight:700;max-width:760px}
+    section{padding:82px 0}
+    .alert-section{padding:34px 0 10px}
+    .alert-banner{background:linear-gradient(90deg,#d62828,#9e111e);color:white;padding:18px 22px;border-radius:18px;font-weight:950;text-transform:uppercase;letter-spacing:.06em;text-align:center;box-shadow:0 14px 32px rgba(166,15,28,.2)}
+    .alert-note{margin-top:12px;background:#fff3f1;color:#8d1f1f;border:1px solid #f2c1bb;padding:15px 18px;border-radius:16px;font-weight:800}
+    .section-title{margin-bottom:30px}
+    .section-title h2{font-size:clamp(34px,4vw,54px);line-height:1.03;letter-spacing:-.035em;color:var(--deep);margin-bottom:12px}
+    .section-title p{color:var(--muted);font-size:18px;max-width:780px}
+    .pricing-grid,.speaker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .speaker-grid{grid-template-columns:repeat(4,1fr)}
+    .card{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 14px 34px rgba(7,31,34,.06);overflow:hidden}
+    .card .copy,.speaker-card{padding:26px}
+    .pricing-card img{height:230px;width:100%;object-fit:cover}
+    .pill{display:inline-flex;padding:8px 14px;border-radius:999px;background:#e4f2ee;color:#145e63;font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+    .card h3{font-size:25px;line-height:1.08;margin-bottom:12px;color:#052f35}
+    .card p{color:var(--muted)}
+    .price{font-size:36px;font-weight:950;color:#216b73;margin-top:16px}
+    .price small{font-size:14px;color:var(--muted)}
+    .speaker-logo{height:70px;display:flex;align-items:center;margin-bottom:18px}
+    .speaker-logo img{max-height:60px;max-width:220px;object-fit:contain}
+    .bullets{list-style:none;margin-top:18px;display:grid;gap:12px}
+    .bullets li{position:relative;padding-left:26px;color:#536a70;font-weight:700}
+    .bullets li:before{content:"✓";position:absolute;left:0;top:0;color:#176a73;font-weight:950}
+    .form-section{background:linear-gradient(135deg,rgba(7,31,34,.95),rgba(18,54,59,.88));color:white}
+    .form-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:38px;align-items:start}
+    .form-copy h2{font-size:clamp(36px,5vw,62px);line-height:1.02;letter-spacing:-.04em;margin-bottom:18px}
+    .form-copy p{color:rgba(255,255,255,.86);font-size:18px;margin-bottom:18px}
+    .logos-inline{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .logos-inline img{height:40px;background:white;padding:6px 10px;border-radius:10px;object-fit:contain;width:auto}
+    .form-panel{background:white;color:var(--text);border-radius:30px;padding:30px;box-shadow:var(--shadow)}
+    .field{margin-bottom:18px}
+    label{display:block;font-weight:900;margin-bottom:8px;color:#072e33}
+    input,select,textarea{width:100%;padding:15px 16px;border-radius:16px;border:1px solid #cdd9d7;font-size:16px;background:#fbfdfc;color:#12363b}
+    textarea{min-height:110px;resize:vertical}
+    .checks{display:grid;gap:10px}
+    .check{display:flex;gap:10px;align-items:flex-start;border:1px solid #d9e3e1;border-radius:16px;padding:13px;background:#fbfdfc}
+    .check input{width:auto;margin-top:4px}
+    .check span{display:block;font-weight:600;color:#6a7d82;font-size:14px}
+    .success-message{display:none;margin-top:18px;padding:18px;border-radius:18px;background:#eaf8ef;color:#16572e;border:1px solid #bde7c9;font-weight:800}
+    .success-message.show{display:block}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+    .story-card{background:white;border-radius:var(--radius);padding:30px;box-shadow:0 14px 34px rgba(7,31,34,.06)}
+    .story-card h3{font-size:30px;line-height:1.08;margin-bottom:12px;color:var(--deep)}
+    .story-card p{color:var(--muted);font-size:18px}
+    .story-photo img{border-radius:var(--radius);box-shadow:var(--shadow)}
+    .agenda{background:#0c2428;color:white}
+    .agenda .section-title h2{color:white}
+    .agenda .section-title p{color:rgba(255,255,255,.75)}
+    .timeline{display:grid;gap:16px}
+    .timeline-item{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:24px}
+    .time{color:var(--gold);font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+    .timeline-item p{color:rgba(255,255,255,.74)}
+    footer{background:#071f22;color:rgba(255,255,255,.72);padding:28px 0}
+    footer a{color:white;font-weight:900}
+    @media(max-width:980px){
+      .menu-toggle{display:flex}
+      nav{position:absolute;top:70px;left:20px;right:20px;display:flex;flex-direction:column;gap:0;padding:12px;background:rgba(7,31,34,.96);border-radius:22px;opacity:0;transform:translateY(-12px);pointer-events:none;transition:.22s}
+      nav.open{opacity:1;transform:translateY(0);pointer-events:auto}
+      nav a{padding:14px 16px;width:100%}
+      .hero{min-height:auto}
+      .hero .wrap{padding:78px 0 54px}
+      .price-strip,.pricing-grid,.speaker-grid,.form-wrap,.story-grid{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:1fr}
+      .hero-logo-card,.hero-logo-card.combo{min-width:calc(50% - 12px)}
+      .hero-logo-card.combo{min-width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container inner">
+      <a href="#inicio" class="brand"><img src="assets/netadrip-logo.png" alt="Netadrip"></a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav id="main-nav">
+        <a href="#seminario">Seminario</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#prereserva">Reservar plaza</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container wrap">
+      <div class="kicker">A Coruña · Fecha a confirmar · mediados/finales de septiembre</div>
+      <h1>Growers Sea Session <span>#1</span></h1>
+      <p class="lead">Un encuentro frente al mar para growshops, cultivadores y marcas del sector con un formato mucho más directo: seminario técnico de alto nivel, networking real, paseo en barco por las Rías y una cena BBQ para cerrar el sábado haciendo comunidad de verdad.</p>
+      <div class="hero-logo-strip">
+        <div class="hero-logo-card combo"><img src="assets/powrhousexnetadrip.png" alt="Netadrip x PowrHouse"></div>
+        <div class="hero-logo-card"><img src="assets/athena-logo.png" alt="Athena"></div>
+        <div class="hero-logo-card"><img src="assets/grandcru-logo.png" alt="Grand Cru"></div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn reserve" href="#prereserva">Reservar plaza</a>
+        <a class="btn secondary" href="#seminario">Ver seminario</a>
+      </div>
+      <div class="price-strip">
+        <div class="mini"><b>20€</b><span>entrada al seminario</span></div>
+        <div class="mini"><b>135€</b><span>paseo en barco aprox.</span></div>
+        <div class="mini"><b>35€</b><span>BBQ del sábado</span></div>
+      </div>
+      <p class="hero-note">Puedes comprar únicamente la entrada del seminario. No es necesario reservar el resto de actividades para asistir a la parte técnica.</p>
+    </div>
+  </main>
+
+  <section class="alert-section">
+    <div class="container">
+      <div class="alert-banner">PLAZAS LIMITADAS PARA SEMINARIO 200 PERSONAS</div>
+      <div class="alert-note">La entrada del seminario se puede reservar por separado por 20€ para que nadie piense que tiene que pagar toda la experiencia completa.</div>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="container">
+      <div class="section-title">
+        <h2>Precios y actividades principales</h2>
+        <p>Elige solo el seminario o completa la experiencia con el paseo en barco y la cena BBQ del sábado.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="card pricing-card">
+          <img src="assets/charlas.png" alt="Seminario técnico">
+          <div class="copy">
+            <div class="pill">Sábado mañana</div>
+            <h3>Seminario técnico</h3>
+            <p>Contenido aplicable, ponentes de nivel y valor real para growshops, cultivadores y profesionales del sector.</p>
+            <div class="price">20€ <small>solo seminario</small></div>
+          </div>
+        </article>
+        <article class="card pricing-card">
+          <img src="assets/eventoBarco.png" alt="Paseo en barco por las Rías">
+          <div class="copy">
+            <div class="pill">Sábado tarde</div>
+            <h3>Paseo en barco por las Rías</h3>
+            <p>Networking desde otra energía: mar, vistas, conversaciones cercanas y una experiencia diferente.</p>
+            <div class="price">135€ <small>aprox.</small></div>
+          </div>
+        </article>
+        <article class="card pricing-card">
+          <img src="assets/barbacoa.png" alt="Cena BBQ">
+          <div class="copy">
+            <div class="pill">Sábado noche</div>
+            <h3>Cena BBQ</h3>
+            <p>El cierre perfecto para hablar sin prisas, conocer mejor a la gente y hacer comunidad de verdad.</p>
+            <div class="price">35€ <small>por persona</small></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="seminario">
+    <div class="container">
+      <div class="section-title">
+        <h2>Seminario de alto nivel técnico</h2>
+        <p>Tres bloques especializados y una mesa redonda final para cerrar la mañana compartiendo visión, experiencia y debate técnico.</p>
+      </div>
+      <div class="speaker-grid">
+        <article class="card speaker-card">
+          <div class="speaker-logo"><img src="assets/athena-logo.png" alt="Athena"></div>
+          <h3>Athena</h3>
+          <p>Aprenderás cómo trabajar de forma profesional con sus productos y qué criterios utilizan las salas técnicas para sacar el máximo partido a la nutrición.</p>
+          <ul class="bullets">
+            <li>Técnicas de nutrición usadas en cultivos profesionales.</li>
+            <li>Cómo interpretar la respuesta de la planta.</li>
+            <li>Estrategias para trabajar con más control y precisión.</li>
+          </ul>
+        </article>
+        <article class="card speaker-card">
+          <div class="speaker-logo"><img src="assets/powrhousexnetadrip.png" alt="Netadrip x PowrHouse"></div>
+          <div class="pill">Synganics como eje principal</div>
+          <h3>SEMINARIO: DOMINANDO EL CULTIVO SYNGANIC</h3>
+          <p><strong>De la teoría a la validación comercial</strong></p>
+          <p>Presentado por Netadrip</p>
+          <p><strong>Con investigación comercial y validación en campo de PowrHouse California.</strong></p>
+          <ul class="bullets">
+            <li><strong>Synganics:</strong> conecta precisión mineral, manejo orgánico, salud de planta y técnicas para implementar una estrategia de riego.</li>
+            <li><strong>Validación comercial en USA:</strong> PowrHouse California aporta visión de facility de I+D con datos medibles y resultados reales.</li>
+            <li><strong>Salud de planta:</strong> plantas sanas generan cosechas comercialmente viables sin sacrificar la experiencia del consumidor.</li>
+          </ul>
+        </article>
+        <article class="card speaker-card">
+          <div class="speaker-logo"><img src="assets/grandcru-logo.png" alt="Grand Cru"></div>
+          <h3>Grand Cru</h3>
+          <p>Aprenderás cómo afrontan la selección genética, qué buscan en un buen pheno hunting y qué criterios usan dentro de su trabajo de breeding.</p>
+          <ul class="bullets">
+            <li>Qué mirar cuando seleccionas genéticas.</li>
+            <li>Cómo enfocar un pheno hunting con criterio.</li>
+            <li>Técnicas y visión del breeding profesional.</li>
+          </ul>
+        </article>
+        <article class="card speaker-card">
+          <div class="pill">Cierre del seminario</div>
+          <h3>Mesa redonda final</h3>
+          <p>Un espacio abierto para preguntas, debate técnico y conexión entre asistentes, marcas y ponentes.</p>
+          <ul class="bullets">
+            <li>Preguntas y respuestas con los ponentes.</li>
+            <li>Debate técnico y aplicación práctica.</li>
+            <li>Cierre conjunto antes del networking.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="prereserva" class="form-section">
+    <div class="container form-wrap">
+      <div class="form-copy">
+        <div class="pill" style="background:rgba(255,255,255,.12);color:var(--gold)">Reserva tu plaza</div>
+        <h2>Reserva tu plaza antes que nadie</h2>
+        <p>Déjanos tus datos y cuéntanos qué parte te interesa más. Cuando cerremos la fecha definitiva, los preinscritos serán los primeros en recibir toda la información.</p>
+        <p>El formulario envía la pre-reserva directamente al equipo de Netadrip. También puedes escribirnos por WhatsApp con el botón verde.</p>
+        <div class="logos-inline">
+          <img src="assets/powrhousexnetadrip.png" alt="Netadrip x PowrHouse">
+          <img src="assets/athena-logo.png" alt="Athena">
+          <img src="assets/grandcru-logo.png" alt="Grand Cru">
+        </div>
+      </div>
+
+      <form id="preReservaForm" class="form-panel" action="https://formsubmit.co/social.netadrip@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nueva pre-reserva Growers Sea Session #1">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="field">
+          <label for="nombre">Nombre completo *</label>
+          <input id="nombre" name="Nombre completo" type="text" placeholder="Nombre y apellidos" required>
+        </div>
+
+        <div class="field">
+          <label for="empresa">Empresa o growshop</label>
+          <input id="empresa" name="Empresa o growshop" type="text" placeholder="Nombre de empresa, growshop o marca">
+        </div>
+
+        <div class="field">
+          <label for="perfil">Perfil</label>
+          <select id="perfil" name="Perfil">
+            <option value="">Selecciona una opción</option>
+            <option>GrowShop</option>
+            <option>Marca del sector</option>
+            <option>Cultivador</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>¿En qué te gustaría participar?</label>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="Interés" value="Seminario sábado 20€"><div><strong>Seminario del sábado · 20€</strong><span>Solo entrada al seminario técnico.</span></div></label>
+            <label class="check"><input type="checkbox" name="Interés" value="Paseo en barco 135€ aprox."><div><strong>Paseo en barco por las Rías · 135€ aprox.</strong><span>Networking y experiencia frente al mar.</span></div></label>
+            <label class="check"><input type="checkbox" name="Interés" value="Cena BBQ 35€"><div><strong>Cena BBQ del sábado · 35€ por persona</strong><span>Cierre relajado para conectar con la comunidad.</span></div></label>
+            <label class="check"><input type="checkbox" name="Interés" value="Visita opcional CSC domingo"><div><strong>Visita opcional a CSC de la zona el domingo</strong><span>Actividad opcional de cierre.</span></div></label>
+            <label class="check"><input type="checkbox" name="Interés" value="Necesito habitación de hotel"><div><strong>Necesito habitación de hotel</strong><span>Si quieres ayuda con alojamiento.</span></div></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input id="telefono" name="Teléfono / WhatsApp" type="tel" placeholder="+34 ...">
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input id="email" name="Email" type="email" placeholder="tu@email.com" required>
+        </div>
+
+        <div class="field">
+          <label for="comentarios">Comentarios</label>
+          <textarea id="comentarios" name="Comentarios" placeholder="Cuéntanos si vienes acompañado o qué parte te interesa más."></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn primary">Enviar pre-reserva</button>
+          <a class="btn whatsapp" href="https://wa.me/34602686285?text=Hola%20Equipo%20Netadrip,%20estoy%20interesado%20en%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20evento." target="_blank" rel="noopener">Mandar WhatsApp</a>
+        </div>
+
+        <div id="formSuccess" class="success-message">
+          Gracias por realizar la pre-reserva. En cuanto tengamos fechas y más datos sobre el evento nos pondremos en contacto contigo. Muchas gracias por confiar en el equipo de Netadrip.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="container story-grid">
+      <div class="story-card">
+        <div class="pill">Una experiencia que apetece vivir</div>
+        <h3>Aprender, conectar y compartir junto al mar</h3>
+        <p>Growers Sea Session #1 reúne formación técnica, marcas referentes y comunidad en un entorno único en A Coruña. Seminario, barco, BBQ y conversaciones reales para aprender, hacer contactos y vivir un fin de semana diferente con gente que habla tu mismo idioma.</p>
+      </div>
+      <div class="story-photo"><img src="assets/acoruna.png" alt="A Coruña"></div>
+    </div>
+  </section>
+
+  <section id="agenda" class="agenda">
+    <div class="container">
+      <div class="section-title">
+        <h2>Agenda orientativa</h2>
+        <p>Un fin de semana diseñado para mezclar formación, networking y experiencia.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="time">Viernes</div><div><h3>Llegada y bienvenida</h3><p>Recepción de asistentes y primeras conexiones.</p></div></div>
+        <div class="timeline-item"><div class="time">Sábado mañana</div><div><h3>Seminario + mesa redonda final</h3><p>Athena, Netadrip x PowrHouse California, Grand Cru y cierre técnico compartido.</p></div></div>
+        <div class="timeline-item"><div class="time">Sábado tarde</div><div><h3>Paseo en barco por las Rías</h3><p>Networking frente al mar en un contexto diferente.</p></div></div>
+        <div class="timeline-item"><div class="time">Sábado noche</div><div><h3>Cena BBQ</h3><p>Cierre relajado para compartir ideas y comunidad.</p></div></div>
+        <div class="timeline-item"><div class="time">Domingo</div><div><h3>Visita opcional a CSC</h3><p>Actividad opcional para quien quiera alargar la experiencia.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Growers Sea Session #1 · social.netadrip@gmail.com · <a href="https://www.instagram.com/netadrip" target="_blank" rel="noopener">@netadrip</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('#main-nav');
+    if(menuToggle && mainNav){
+      menuToggle.addEventListener('click', () => {
+        const open = mainNav.classList.toggle('open');
+        menuToggle.classList.toggle('active', open);
+        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.classList.remove('active');
+      }));
+    }
+
+    const form = document.getElementById('preReservaForm');
+    const success = document.getElementById('formSuccess');
+
+    if(form){
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+
+        const formData = new FormData(form);
+
+        try{
+          const response = await fetch('https://formsubmit.co/ajax/social.netadrip@gmail.com', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if(!response.ok){
+            throw new Error('No se pudo enviar');
+          }
+
+          success.classList.add('show');
+          form.reset();
+          success.scrollIntoView({behavior:'smooth', block:'center'});
+        }catch(error){
+          alert('No se ha podido enviar el formulario automáticamente. Por favor, escríbenos por WhatsApp con el botón verde.');
+        }finally{
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
